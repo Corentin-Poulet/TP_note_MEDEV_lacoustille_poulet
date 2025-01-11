@@ -1,0 +1,6 @@
+Testcase: org.centrale.medev.tpnote.TestTests
+Tests run: 1, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 59 milli sec(s)
+------------- Standard Output ---------------
+main
+Hello World !
+------------- ---------------- ---------------
