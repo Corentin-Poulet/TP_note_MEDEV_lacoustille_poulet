@@ -10,7 +10,7 @@
         <fileset dir="lib/jupiter/"/>
     </path>
     <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-	    <classpath path="../../../lib/jacocoant.jar" />
+	    <classpath path="lib/jacoco/jacocoant.jar" />
     </taskdef>
     <!--Initialisation des dossiers et vérification des dépendances-->
     <target name="checkDependencies" description="Check if dependencies are satisfied"> 
