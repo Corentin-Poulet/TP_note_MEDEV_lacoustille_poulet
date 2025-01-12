@@ -1,7 +1,5 @@
-import java.lang.Math;
-
 package org.centrale.medev.tpnote;
-
+import java.lang.Math;
 /**
  * @author lacoustille_poulet
  */
