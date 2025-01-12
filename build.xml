@@ -78,14 +78,12 @@
 	<!--Lancement de JUnit-->
         <junit fork="true">
             <!--Indication des dépendances-->
-            <classpath refid="junit.platform.libs.classpath"/>
-            <classpath refid="junit.engine.jupiter.classpath"/>
-            <classpath>
+            <classpath refid="junit.platform.libs.classpath">
+                <pathelement location="junit.engine.jupiter.classpath"/>
                 <pathelement location="${classes.location}"/>
             </classpath>
             <!--Génération des fichiers résultats de test-->
             <test todir="${test.report.dir}">
-                <fileset dir="${classes.location}"/>
             </test>
 	    <formatter type="xml"/>
 	</junit>
