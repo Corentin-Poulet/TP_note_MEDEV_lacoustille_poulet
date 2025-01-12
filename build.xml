@@ -24,7 +24,7 @@
 	<property name="test.report.dir" location="${result.dir}/testReports" />
 	<property name="jar.dir" location="${result.dir}/executable" />
 	<mkdir dir="${result.dir}"/>
-	<mkdir dir="${documentation.dir}"
+	<mkdir dir="${documentation.dir}"/>
         <mkdir dir="${classes.location}"/>
 	<mkdir dir="${jar.dir}"/>
 	<mkdir dir="${test.report.dir}"/>
