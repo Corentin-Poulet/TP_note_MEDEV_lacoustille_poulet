@@ -50,8 +50,10 @@
             <classpath>
                 <pathelement location="${classes.location}"/>
             </classpath>
+            <echo message="imported junits"/>
             <testclasses outputdir="build/testReports">
                 <fileset dir="${classes.location}"/>
+                <echo message="Imported generated classes"/>
                 <listener type="legacy-brief" sendSysOut="true"/>
                 <listener type="legacy-xml" sendSysErr="true" sendSysOut="true"/>
             </testclasses>
