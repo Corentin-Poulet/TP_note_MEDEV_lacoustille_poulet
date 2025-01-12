@@ -89,6 +89,8 @@
 	<!--Lancement de JUnit-->
         <junit fork="true">
             <!--Indication des dépendances-->
+	    <classpath refid="junit.engine.jupiter.classpath"/>
+            <classpath refid="junit.platform.libs.classpath"/>
             <classpath>
                 <pathelement location="junit.platform.libs.classpath"/>
                 <pathelement location="junit.platform.libs.classpath/junit-platform-launcher-1.10.3.jar"/>
