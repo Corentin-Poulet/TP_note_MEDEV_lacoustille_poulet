@@ -81,6 +81,7 @@
             <classpath>
                 <pathelement location="junit.platform.libs.classpath"/>
                 <pathelement location="junit.platform.libs.classpath/junit-platform-launcher-1.10.3.jar"/>
+		<pathelement location="lib/junit-4.13.2.jar"/>
                 <pathelement location="junit.engine.jupiter.classpath"/>
                 <pathelement location="${classes.location}"/>
             </classpath>
