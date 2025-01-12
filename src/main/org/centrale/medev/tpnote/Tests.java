@@ -14,6 +14,12 @@ public class Tests{
         System.out.println("Hello World !");
     }
 
+    /**
+     * Additionne un nombre et la valeur absolue d'un autre
+     * @param a premier nombre
+     * @param b nombre dont on prend la valeur absolue
+     * @return a + |b|
+     */
     public static Integer theAdder(int a, int b){
         return a+Math.abs(b);
     }
