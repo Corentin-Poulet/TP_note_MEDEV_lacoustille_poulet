@@ -38,4 +38,11 @@ public class TestTests{
         System.out.println("main");
         Tests.main(new String[2]);
     }
+
+    @Test
+    public void testAdder(){
+        assertEquals(Tests.theAdder(5,4), 9);
+        assertEquals(Tests.theAdder(0, -2), 2);
+        assertEquals(Tests.theAdder(-2,-2), 0);
+    }
 }
