@@ -78,7 +78,8 @@
 	<!--Lancement de JUnit-->
         <junit fork="true">
             <!--Indication des dépendances-->
-            <classpath refid="junit.platform.libs.classpath">
+            <classpath>
+                <pathelement location="junit.platform.libs.classpath"/>
                 <pathelement location="junit.engine.jupiter.classpath"/>
                 <pathelement location="${classes.location}"/>
             </classpath>
