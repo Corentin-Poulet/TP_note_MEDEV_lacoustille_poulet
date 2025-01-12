@@ -88,6 +88,7 @@
             <!--Génération des fichiers résultats de test-->
             <batchtest fork="yes" todir="${test.report.dir}">
         	<fileset dir="${tests.location}">
+                <include name="**/*Test*.java"/>
         	</fileset>
     	    </batchtest>
 	    <formatter type="xml"/>
