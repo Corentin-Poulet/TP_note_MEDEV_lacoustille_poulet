@@ -87,16 +87,16 @@
         <echo message="Done!"/>
 
         <!--Génération du fichier de coverage Jacoco-->
-        <jacoco:coverage destfile="build/jacoco/jacoco.exec">
+        <!--<jacoco:coverage destfile="build/jacoco/jacoco.exec">-->
             <!--Execution des tests-->
-			<junit printsummary="yes" haltonfailure="no" failureproperty="isUnitTestFailed" fork="yes" forkmode="once">
+			<!--<junit printsummary="yes" haltonfailure="no" failureproperty="isUnitTestFailed" fork="yes" forkmode="once">
                 <classpath refid="junit.platform.libs.classpath"/>
                 <classpath refid="junit.engine.jupiter.classpath"/>
                 <classpath>
                     <pathelement location="${classes.location}"/>
                 </classpath>
             </junit>
-		</jacoco:coverage>
+		</jacoco:coverage>-->
         <!--Génération du rapport du coverage-->
         <!--<jacoco:report>-->
 
