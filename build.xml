@@ -9,6 +9,9 @@
     <path id="junit.engine.jupiter.classpath">
         <fileset dir="lib/jupiter/"/>
     </path>
+    <path id="junit.jar.classpath">
+        <fileset dir="lib/"/>
+    </path>
     <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
 	    <classpath path="lib/jacoco/jacocoant.jar" />
     </taskdef>
@@ -20,7 +23,7 @@
         <property name="tests.location" location="src/test"/>
 	<property name="documentation.dir" location="build/documentation"/>
 	<property name="result.report.dir" location="${result.dir}/jacoco" />
-	<property name="result.exec.file" location="${result.dir}/jacoco.exec" />
+	<property name="result.exec.file" location="${result.dir}/jacoco/jacoco.exec" />
 	<property name="test.report.dir" location="${result.dir}/testReports" />
 	<property name="jar.dir" location="${result.dir}/executable" />
 	<mkdir dir="${result.dir}"/>
@@ -47,6 +50,7 @@
         <!--Compilation avec Javac qui compile les sources et les tests-->
         <javac srcdir="src" destdir="${classes.location}" includeAntRuntime="false">
             <classpath refid="junit.engine.jupiter.classpath"/>
+            <classpath refid="junit.jar.classpath"/>
         </javac>
         <echo message="Done!"/>
     </target>
@@ -55,7 +59,7 @@
         <!--Génération du fichier .jar et du manifest-->
         <jar basedir="${classes.location}" destfile="build/executable/TP_note_medev_lacoustille_poulet.jar">
             <manifest>
-                <attribute name="Main-Class" value="org.centrale.medev.tpnote.Test"/>
+                <attribute name="Main-Class" value="org.centrale.medev.tpnote.Tests"/>
             </manifest>
         </jar>
         <echo message="Done!"/>
@@ -63,7 +67,14 @@
 	<target name="generatingJavadoc" depends="build">
         <echo message="Generating Javadoc..."/>
         <!--Génération de la documentation Javadoc-->
-        <javadoc packagenames="org.centrale.medev.tpnote.*" sourcepath="src/main" destdir="${documentation.dir}" author="true" version="true" use="true" >
+        <javadoc destdir="${documentation.dir}" author="true" version="true" use="true" >
+            <classpath refid="junit.engine.jupiter.classpath"/>
+            <classpath refid="junit.jar.classpath"/>
+            <fileset dir="src" defaultexcludes="yes">
+                <include name="main/org/centrale/medev/tpnote/*"/>
+                <include name="test/org/centrale/medev/tpnote/*"/>
+            </fileset>
+
             <doctitle><![CDATA[<h1> TP noté MEDEV Lacoustille Poulet </h1>]]></doctitle>
             <bottom><![CDATA[<i>CNTCNC Productions. All Right Reserved. </i>]]></bottom>
             <link offline="true" href="https://docs.oracle.com/javase/8/docs/api/" packagelistLoc="C:\tmp"/>
@@ -81,15 +92,16 @@
             <classpath>
                 <pathelement location="junit.platform.libs.classpath"/>
                 <pathelement location="junit.platform.libs.classpath/junit-platform-launcher-1.10.3.jar"/>
-		<pathelement location="lib/junit-4.13.2.jar"/>
+		        <pathelement location="lib/junit-4.13.2.jar"/>
                 <pathelement location="junit.engine.jupiter.classpath"/>
-                <pathelement location="${classes.location}/main"/>
+                <pathelement location="${classes.location}"/>
+                <pathelement location="lib/hamcrest-core-1.3.jar"/>
             </classpath>
             <!--Génération des fichiers résultats de test-->
             <batchtest fork="yes" todir="${test.report.dir}">
-        	<fileset dir="${tests.location}">
-                <include name="**/*Test*.java"/>
-        	</fileset>
+                <fileset dir="${tests.location}">
+                    <include name="**/*Test*.java"/>
+                </fileset>
     	    </batchtest>
 	    <formatter type="xml"/>
 	</junit>
@@ -121,40 +133,10 @@
 			</structure>
 
 			<!-- to produce reports in different formats. -->
+			<html destdir="${result.report.dir}" />
+			<csv destfile="${result.report.dir}/report.csv" />
 			<xml destfile="${result.report.dir}/report.xml" />
 	</jacoco:report>
-        <!--Génération du fichier de coverage Jacoco-->
-        <!--<jacoco:coverage destfile="build/jacoco/jacoco.exec">-->
-            <!--Execution des tests-->
-			<!--<junit printsummary="yes" haltonfailure="no" failureproperty="isUnitTestFailed" fork="yes" forkmode="once">
-                <classpath refid="junit.platform.libs.classpath"/>
-                <classpath refid="junit.engine.jupiter.classpath"/>
-                <classpath>
-                    <pathelement location="${classes.location}"/>
-                </classpath>
-            </junit>
-		</jacoco:coverage>-->
-        <!--Génération du rapport du coverage-->
-        <!--<jacoco:report>-->
-
-			<!-- Collecte des données de coverage-->
-			<!--<executiondata>
-				<file file="build/jacoco/jacoco.exec" />
-			</executiondata>-->
-
-			<!-- Indication des fichier .class et des fichiers sources-->
-			<!--<structure name="JaCoCo Ant Medev">
-				<classfiles>
-					<fileset dir="build/classes" />
-				</classfiles>
-				<sourcefiles encoding="UTF-8">
-					<fileset dir="src/main" />
-				</sourcefiles>
-			</structure>-->
-
-			<!-- On prdoduit un rapport au format html -->
-			<!--<html destdir="build/jacoco" />
-		</jacoco:report>-->
     </target>
 	<target name="rebuild" depends="generatingJar,generatingJavadoc,testReport" />
 </project>
