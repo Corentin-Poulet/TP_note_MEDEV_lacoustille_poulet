@@ -76,7 +76,7 @@
 	<!--Try to wrap JUnit tests with Jacoco-->
 	<jacoco:coverage destfile="${result.exec.file}">
 	<!--Lancement de JUnit-->
-        <junit>
+        <junit fork="true">
             <!--Indication des dépendances-->
             <classpath refid="junit.platform.libs.classpath"/>
             <classpath refid="junit.engine.jupiter.classpath"/>
@@ -84,11 +84,10 @@
                 <pathelement location="${classes.location}"/>
             </classpath>
             <!--Génération des fichiers résultats de test-->
-            <testclasses outputdir="${test.report.dir}">
+            <test todir="${test.report.dir}">
                 <fileset dir="${classes.location}"/>
-                <listener type="legacy-brief" sendSysOut="true"/>
-                <listener type="legacy-xml" sendSysErr="true" sendSysOut="true"/>
-            </testclasses>
+            </test=>
+	    <formatter type="xml"/>
 	</junit>
 	</jacoco:coverage>
 </target>
