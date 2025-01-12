@@ -86,7 +86,7 @@
             <!--Génération des fichiers résultats de test-->
             <test todir="${test.report.dir}">
                 <fileset dir="${classes.location}"/>
-            </test=>
+            </test>
 	    <formatter type="xml"/>
 	</junit>
 	</jacoco:coverage>
