@@ -17,7 +17,7 @@
         <property name="result.dir" location="build" />
         <property name="src.location" location="src"/>
         <property name="classes.location" location="${result.dir}/classes"/>
-        <property name="tests.location" location="src"/>
+        <property name="tests.location" location="src/test"/>
 	<property name="documentation.dir" location="build/documentation"/>
 	<property name="result.report.dir" location="${result.dir}/jacoco" />
 	<property name="result.exec.file" location="${result.dir}/jacoco.exec" />
@@ -86,8 +86,10 @@
                 <pathelement location="${classes.location}"/>
             </classpath>
             <!--Génération des fichiers résultats de test-->
-            <test todir="${test.report.dir}">
-            </test>
+            <batchtest fork="yes" todir="${test.report.dir}">
+        	<fileset dir="${tests.location}">
+        	</fileset>
+    	    </batchtest>
 	    <formatter type="xml"/>
 	</junit>
 	</jacoco:coverage>
