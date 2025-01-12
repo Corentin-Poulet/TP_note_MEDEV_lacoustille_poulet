@@ -15,22 +15,29 @@ import org.centrale.medev.tpnote.Tests;
 
 public class TestTests{
     public TestTests() {
+        // empty constructor
     }
     
     @BeforeAll
     public static void setUpClass() {
+        //nothing to do yet
     }
     
     @AfterAll
     public static void tearDownClass() {
+        //nothing to do yet
+
     }
     
     @BeforeEach
     public void setUp() {
+        //nothing to do yet
+
     }
     
     @AfterEach
     public void tearDown() {
+        //nothing to do yet
     }
 
     @Test 
