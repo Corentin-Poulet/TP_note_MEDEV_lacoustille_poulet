@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="TP_note_medev_lacoustille_poulet" default="build" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
+<project name="TP_note_medev_lacoustille_poulet" default="rebuild" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
     <description>TP note MEDEV Lacoustille-Poulet.</description>
 
     <!--Indication des chemins des dépendances JUnit-->
@@ -50,7 +50,7 @@
         </javac>
         <echo message="Done!"/>
     </target>
-    <target name="generatingJar" depends="build"/>
+    <target name="generatingJar" depends="build">
         <echo message="Generating Executable..."/>
         <!--Génération du fichier .jar et du manifest-->
         <jar basedir="${classes.location}" destfile="build/executable/TP_note_medev_lacoustille_poulet.jar">
@@ -60,7 +60,7 @@
         </jar>
         <echo message="Done!"/>
 </target>
-	<target name="generatingJavadoc" depends="build"/>
+	<target name="generatingJavadoc" depends="build">
         <echo message="Generating Javadoc..."/>
         <!--Génération de la documentation Javadoc-->
         <javadoc packagenames="org.centrale.medev.tpnote.*" sourcepath="src/main" destdir="${documentation.dir}" author="true" version="true" use="true" >
@@ -71,7 +71,7 @@
         </javadoc>
         <echo message="Done!"/>
 </target>
-	<target name="test" depends="build"/>
+	<target name="test" depends="build">
         <echo message="Generating tests..."/>
 	<!--Try to wrap JUnit tests with Jacoco-->
 	<jacoco:coverage destfile="${result.exec.file}">
@@ -155,6 +155,7 @@
 			<!--<html destdir="build/jacoco" />
 		</jacoco:report>-->
     </target>
+	<target name="rebuild" depends="generatingJar,generatingJavadoc,testReport" />
 </project>
 
     
