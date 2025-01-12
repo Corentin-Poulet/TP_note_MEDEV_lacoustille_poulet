@@ -73,11 +73,10 @@
 </target>
 	<target name="test" depends="build">
         <echo message="Generating tests..."/>
-		<!--Lancement de JUnit-->
-        <junitlauncher>
 	<!--Try to wrap JUnit tests with Jacoco-->
 	<jacoco:coverage destfile="${result.exec.file}">
-        
+	<!--Lancement de JUnit-->
+        <junit fork="true">
             <!--Indication des dépendances-->
             <classpath refid="junit.platform.libs.classpath"/>
             <classpath refid="junit.engine.jupiter.classpath"/>
@@ -90,8 +89,8 @@
                 <listener type="legacy-brief" sendSysOut="true"/>
                 <listener type="legacy-xml" sendSysErr="true" sendSysOut="true"/>
             </testclasses>
+	</junit>
 	</jacoco:coverage>
-	</junitlauncher>
 </target>
 	<target name="testReport" depends="test">
         <!--Génération du rapport de tests-->
