@@ -76,7 +76,7 @@
 	<!--Try to wrap JUnit tests with Jacoco-->
 	<jacoco:coverage destfile="${result.exec.file}">
 	<!--Lancement de JUnit-->
-        <junit fork="true">
+        <junit>
             <!--Indication des dépendances-->
             <classpath refid="junit.platform.libs.classpath"/>
             <classpath refid="junit.engine.jupiter.classpath"/>
