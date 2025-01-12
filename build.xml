@@ -9,19 +9,27 @@
     <path id="junit.engine.jupiter.classpath">
         <fileset dir="lib/jupiter/"/>
     </path>
-
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+	    <classpath path="../../../lib/jacocoant.jar" />
+    </taskdef>
     <!--Initialisation des dossiers et vérification des dépendances-->
-    <target name="checkDependencies" description="Check if dependencies are satisfied">
-        <mkdir dir="build"/>
-        <mkdir dir="build/classes"/>
-        <mkdir dir="build/documentation"/>
-        <mkdir dir="build/executable"/>
-        <mkdir dir="build/testReports"/>
-        <mkdir dir="build/jacoco"/>
-        <touch file="build/jacoco/jacoco.exec"/>
+    <target name="checkDependencies" description="Check if dependencies are satisfied"> 
+        <property name="result.dir" location="build" />
         <property name="src.location" location="src"/>
-        <property name="classes.location" location="build/classes"/>
+        <property name="classes.location" location="${result.dir}/classes"/>
         <property name="tests.location" location="src"/>
+	<property name="documentation.dir" location="build/documentation"/>
+	<property name="result.report.dir" location="${result.dir}/jacoco" />
+	<property name="result.exec.file" location="${result.dir}/jacoco.exec" />
+	<property name="test.report.dir" location="${result.dir}/testReports" />
+	<property name="jar.dir" location="${result.dir}/executable" />
+	<mkdir dir="${result.dir}"/>
+	<mkdir dir="${documentation.dir}"
+        <mkdir dir="${classes.location}"/>
+	<mkdir dir="${jar.dir}"/>
+	<mkdir dir="${test.report.dir}"/>
+	<mkdir dir="${result.report.dir}"/>
+	<touch file="${result.exec.file}"/>
         <echo message="Source directory is ${src.location}"/>
         <echo message="Classes directory is ${classes.location}"/>
         <condition property="src.available">
@@ -32,7 +40,7 @@
         </condition>
     </target>
 
-    <!--Target principal qui build, construit le jar, construit la documentation, effectue les tests et un rapport, qui analyse le coverage des tests-->
+    <!--Target principal qui build-->
     <target name="build" description="Build the application" depends="checkDependencies" if="src.available">
 
         <echo message="Building Application..."/>
@@ -41,7 +49,8 @@
             <classpath refid="junit.engine.jupiter.classpath"/>
         </javac>
         <echo message="Done!"/>
-
+    </target>
+    <target name="generatingJar" depends="build"/>
         <echo message="Generating Executable..."/>
         <!--Génération du fichier .jar et du manifest-->
         <jar basedir="${classes.location}" destfile="build/executable/TP_note_medev_lacoustille_poulet.jar">
@@ -50,18 +59,22 @@
             </manifest>
         </jar>
         <echo message="Done!"/>
-
+</target>
+	<target name="generatingJavadoc" depends="build"/>
         <echo message="Generating Javadoc..."/>
         <!--Génération de la documentation Javadoc-->
-        <javadoc packagenames="org.centrale.medev.tpnote.*" sourcepath="src/main" destdir="build/documentation" author="true" version="true" use="true" >
+        <javadoc packagenames="org.centrale.medev.tpnote.*" sourcepath="src/main" destdir="${documentation.dir}" author="true" version="true" use="true" >
             <doctitle><![CDATA[<h1> TP noté MEDEV Lacoustille Poulet </h1>]]></doctitle>
             <bottom><![CDATA[<i>CNTCNC Productions. All Right Reserved. </i>]]></bottom>
             <link offline="true" href="https://docs.oracle.com/javase/8/docs/api/" packagelistLoc="C:\tmp"/>
             <link href="https://docs.oracle.com/javase/8/docs/api/"/>
         </javadoc>
         <echo message="Done!"/>
-
+</target>
+	<target name="test" depends="build"/>
         <echo message="Generating tests..."/>
+	<!--Try to wrap JUnit tests with Jacoco-->
+	<jacoco:coverage destfile="${result.exec.file}">
         <!--Lancement de JUnit-->
         <junitlauncher>
             <!--Indication des dépendances-->
@@ -71,21 +84,44 @@
                 <pathelement location="${classes.location}"/>
             </classpath>
             <!--Génération des fichiers résultats de test-->
-            <testclasses outputdir="build/testReports">
+            <testclasses outputdir="${test.report.dir}">
                 <fileset dir="${classes.location}"/>
                 <listener type="legacy-brief" sendSysOut="true"/>
                 <listener type="legacy-xml" sendSysErr="true" sendSysOut="true"/>
             </testclasses>
         </junitlauncher>
+	</jacoco:coverage>
+</target>
+	<target name="testReport" depends="test">
         <!--Génération du rapport de tests-->
-        <junitreport todir="build/testReports">
-            <fileset dir="build/testReports">
+        <junitreport todir="${test.report.dir}">
+            <fileset dir="${test.report.dir}">
                 <include name="TEST-*.xml"/>
             </fileset>
-            <report format="frames" todir="build/testReports/html"/>
+            <report format="frames" todir="${test.report.dir}/html"/>
         </junitreport>
-        <echo message="Done!"/>
+        <echo message="Junit Report done!"/>
+	<jacoco:report>
 
+			<executiondata>
+				<file file="${result.exec.file}" />
+			</executiondata>
+
+			<!-- the class files and optional source files ... -->
+			<structure name="JaCoCo Ant">
+				<classfiles>
+					<fileset dir="${classes.location}" />
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="${src.location}" />
+				</sourcefiles>
+			</structure>
+
+			<!-- to produce reports in different formats. -->
+			<html destdir="${result.report.dir}" />
+			<csv destfile="${result.report.dir}/report.csv" />
+			<xml destfile="${result.report.dir}/report.xml" />
+	</jacoco:report>
         <!--Génération du fichier de coverage Jacoco-->
         <!--<jacoco:coverage destfile="build/jacoco/jacoco.exec">-->
             <!--Execution des tests-->
