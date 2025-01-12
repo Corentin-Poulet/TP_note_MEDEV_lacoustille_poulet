@@ -83,7 +83,7 @@
                 <pathelement location="junit.platform.libs.classpath/junit-platform-launcher-1.10.3.jar"/>
 		<pathelement location="lib/junit-4.13.2.jar"/>
                 <pathelement location="junit.engine.jupiter.classpath"/>
-                <pathelement location="${classes.location}"/>
+                <pathelement location="${classes.location}/main"/>
             </classpath>
             <!--Génération des fichiers résultats de test-->
             <batchtest fork="yes" todir="${test.report.dir}">
