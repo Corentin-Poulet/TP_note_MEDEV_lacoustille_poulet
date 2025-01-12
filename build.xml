@@ -98,26 +98,26 @@
             </junit>
 		</jacoco:coverage>
         <!--Génération du rapport du coverage-->
-        <jacoco:report>
+        <!--<jacoco:report>-->
 
 			<!-- Collecte des données de coverage-->
-			<executiondata>
+			<!--<executiondata>
 				<file file="build/jacoco/jacoco.exec" />
-			</executiondata>
+			</executiondata>-->
 
 			<!-- Indication des fichier .class et des fichiers sources-->
-			<structure name="JaCoCo Ant Medev">
+			<!--<structure name="JaCoCo Ant Medev">
 				<classfiles>
 					<fileset dir="build/classes" />
 				</classfiles>
 				<sourcefiles encoding="UTF-8">
 					<fileset dir="src/main" />
 				</sourcefiles>
-			</structure>
+			</structure>-->
 
 			<!-- On prdoduit un rapport au format html -->
-			<html destdir="build/jacoco" />
-		</jacoco:report>
+			<!--<html destdir="build/jacoco" />
+		</jacoco:report>-->
     </target>
 </project>
 
