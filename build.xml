@@ -106,9 +106,11 @@
 	    <formatter type="xml"/>
 	</junit>
 	</jacoco:coverage>
+	<echo message="Done!"/>
 </target>
 	<target name="testReport" depends="test">
         <!--Génération du rapport de tests-->
+	<echo message="Generating Junit report..."/>
         <junitreport todir="${test.report.dir}">
             <fileset dir="${test.report.dir}">
                 <include name="TEST-*.xml"/>
@@ -116,6 +118,7 @@
             <report format="frames" todir="${test.report.dir}/html"/>
         </junitreport>
         <echo message="Junit Report done!"/>
+	<echo message="Generating Jacoco report..."/>
 	<jacoco:report>
 
 			<executiondata>
@@ -137,6 +140,7 @@
 			<csv destfile="${result.report.dir}/report.csv" />
 			<xml destfile="${result.report.dir}/report.xml" />
 	</jacoco:report>
+	<echo message="Done!"/>
     </target>
 	<target name="rebuild" depends="generatingJar,generatingJavadoc,testReport" />
 </project>
