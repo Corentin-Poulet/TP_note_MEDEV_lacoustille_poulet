@@ -1,6 +1,6 @@
 package org.centrale.medev.tpnote;
 
-
+import java.util.ArrayList;
 /**
  * Plateau de jeu de 8 cases par 8 cases
  */
@@ -75,5 +75,29 @@ public class Plateau {
         }
     }
 
+    /**
+     * Méthode permettant d'à partir d'une position d'obtenir tous les pions prenable
+     * @param x Coordonnée x
+     * @param y Coordonnée y
+     * @param couleur Couleur du Pion
+     * @return La liste des pions prenables
+     */
+    public ArrayList<Pion> retournes(int x,int y, boolean couleur){
+        ArrayList<Pion> result=new ArrayList<>();
+        for (int i=-1;i<=1;i++){
+            for (int j=-1;j<=1;j++){
+                int k=0;
+                while (x+i*k>=0 && y+j*k>=0 && x+i*k<8 && y+j*k<8 && ((this.getCase(x+k*i, y+k*j)!=null && this.getCase(x+k*i, y+k*j).getCouleur()!=couleur))){
+                    k++;
+                    if ((this.getCase(x+k*i, y+k*j)!=null && this.getCase(x+k*i,y+k*j).getCouleur()==couleur)){
+                        for (int a=0;a<k;a++){
+                            result.add(this.getCase(x+i*a,y+a*j));
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
 }

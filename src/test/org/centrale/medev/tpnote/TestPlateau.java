@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.centrale.medev.tpnote.Pion;
+import java.util.ArrayList;
 
 /**
  *
@@ -60,5 +61,17 @@ public class TestPlateau{
         Plateau plateau = new Plateau();
         plateau.ajout(2, 5, false);
         assertEquals(false,plateau.getCase(2, 5).getCouleur());
+    }
+
+    /**
+     * Test de la méthode qui renvoie la liste des pion retournable pour une position
+     */
+
+    @Test 
+    public void testRetournes(){
+        System.out.println("retournes");
+        Plateau plateau=new Plateau();
+        ArrayList<Pion> prenable=plateau.retournes(4, 2, false);
+        assertEquals(plateau.getCase(4,3),prenable.get(0));
     }
 }
