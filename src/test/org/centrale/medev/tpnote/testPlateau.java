@@ -45,5 +45,6 @@ public class TestPlateau{
         Plateau plateau = new Plateau();
         assertEquals(false, plateau.getCase(3, 3).getCouleur());
         assertEquals(true, plateau.getCase(3, 4).getCouleur());
+        assertNull(plateau.getCase(3,5));
     }
 }
