@@ -12,8 +12,8 @@ public class Partie{
 		plateau = new Plateau();
 		noTour = 0.0;
 		partieEnCours = true;
-		jouer();
 		joueurActif = false;
+		jouer();
 	}
 	private void jouer(){
 		while (partieEnCours){
@@ -29,7 +29,7 @@ public class Partie{
 		Scanner scan = new Scanner(System.in);
 		afficherMessage(joueur, false);
 		String action = scan.nextLine();
-		boolean doitPasser = !Plateau.peutJouer();
+		boolean doitPasser = !(plateau.peutJouer(joueur));
 		boolean caseValide = false;
 		if (doitPasser){
 			while (!action.equals("p")){
@@ -38,16 +38,22 @@ public class Partie{
 			}
 			return false;
 		}else{
-			while (!caseValide()){
-				if (action.equals("p")){logger.info(" ----- Impossible de passer -----");}
+			while (!caseValide){
+				if (action.equals("p")){
+					logger.info(" ----- Impossible de passer -----");
+			}
 				else{
 					int column = action.charAt(1)-'1';
 					int line = action.charAt(0) - 'a';
 					caseValide = plateau.verifierDispo(line, column, joueur);
-					if (caseValide){return true;}
+					if (caseValide){
+						return true;
+					}
 					action = scan.nextLine();
 				}
-			}}
+			}
+			return true;
+		}
 	}
 
 	public static void afficherMessage(boolean joueur, boolean erreur){
