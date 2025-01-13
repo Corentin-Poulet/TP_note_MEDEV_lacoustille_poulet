@@ -143,9 +143,6 @@
 			<xml destfile="${result.report.dir}/report.xml" />
 	</jacoco:report>
 	<echo message="Done!"/>
-	<loadfile property="jacoco.report"
-          srcFile="${result.report.dir}/report.xml"/>
-	<echo message="${jacoco.report}"/>
     </target>
 	<target name="rebuild" depends="generatingJar,generatingJavadoc,testReport" />
     <target name="clean">
