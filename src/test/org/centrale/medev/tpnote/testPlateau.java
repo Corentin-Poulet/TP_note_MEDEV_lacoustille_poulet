@@ -43,7 +43,7 @@ public class TestPlateau{
     public void testPlateauPlateau(){
         System.out.println("Plateau test");
         Plateau plateau = new Plateau();
-        assertEquals(plateau.getCase(3, 3).getCouleur(), false);
-        assertEquals(plateau.getCase(3, 4).getCouleur(), true);
+        assertEquals(false, plateau.getCase(3, 3).getCouleur());
+        assertEquals(true, plateau.getCase(3, 4).getCouleur());
     }
 }
