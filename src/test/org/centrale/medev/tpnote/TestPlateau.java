@@ -47,8 +47,8 @@ public class TestPlateau{
     public void testPlateauPlateau(){
         System.out.println("Plateau test");
         Plateau plateau = new Plateau();
-        assertEquals(false, plateau.getCase(3, 3).getCouleur());
-        assertEquals(true, plateau.getCase(3, 4).getCouleur());
+        assertEquals(true, plateau.getCase(3, 3).getCouleur());
+        assertEquals(false, plateau.getCase(3, 4).getCouleur());
         assertNull(plateau.getCase(3,5));
     }
 
@@ -71,7 +71,7 @@ public class TestPlateau{
     public void testRetournes(){
         System.out.println("retournes");
         Plateau plateau=new Plateau();
-        ArrayList<Pion> prenable=plateau.retournes(4, 2, false);
+        ArrayList<Pion> prenable=plateau.retournes(4, 2, true);
         assertEquals(plateau.getCase(4,3),prenable.get(0));
     }
 }
