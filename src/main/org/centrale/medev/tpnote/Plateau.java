@@ -130,7 +130,7 @@ public class Plateau {
      */
     public boolean peutJouer(boolean couleur){
         for (int i=0;i<8;i++){
-            for(int j=0;j<0;j++){
+            for(int j=0;j<8;j++){
                 if(retournes(i, j, couleur).size()!=0){
                     return true;
                 }

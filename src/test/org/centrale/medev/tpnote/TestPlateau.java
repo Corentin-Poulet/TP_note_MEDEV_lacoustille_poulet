@@ -74,4 +74,32 @@ public class TestPlateau{
         ArrayList<Pion> prenable=plateau.retournes(4, 2, true);
         assertEquals(plateau.getCase(4,3),prenable.get(0));
     }
+
+    /*
+     * Test de la méthode verifierDispo
+     */
+
+    @Test 
+    public void testVerifierDispo(){
+        System.out.println("verifierDispo");
+        Plateau plateau=new Plateau();
+        assertEquals(true,plateau.verifierDispo(4, 2, true));
+        assertEquals(false,plateau.verifierDispo(7, 7, false));
+    }
+
+    /**
+     * Test de la méthode peutJouer
+     */
+    @Test 
+    public void testPeutJouer() {
+        System.out.println("PeutJouer");
+        Plateau plateau=new Plateau();
+        assertEquals(true,plateau.peutJouer(true));
+        for (int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                plateau.ajout(i, i, false);
+            }
+        }
+        assertEquals(false,plateau.peutJouer(false));
+    }
 }
