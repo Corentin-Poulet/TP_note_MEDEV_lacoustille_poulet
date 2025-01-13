@@ -38,6 +38,9 @@ public class TestPlateau{
     public void tearDown() {
         //nothing to do yet
     }
+    /**
+     * Test de la création du plateau
+     */
 
     @Test
     public void testPlateauPlateau(){
@@ -46,5 +49,16 @@ public class TestPlateau{
         assertEquals(false, plateau.getCase(3, 3).getCouleur());
         assertEquals(true, plateau.getCase(3, 4).getCouleur());
         assertNull(plateau.getCase(3,5));
+    }
+
+    /**
+     * Test de l'ajout sur le plateau
+     */
+    @Test 
+    public void testAjout(){
+        System.out.println("ajout");
+        Plateau plateau = new Plateau();
+        plateau.ajout(2, 5, false);
+        assertEquals(false,plateau.getCase(2, 5).getCouleur());
     }
 }

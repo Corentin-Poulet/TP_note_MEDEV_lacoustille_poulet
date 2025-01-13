@@ -45,6 +45,7 @@ public class TestPion{
      */
     @Test 
     public void testRetourner(){
+        System.out.println("retourner");
         Pion pion1=new Pion(true);
         Pion pion2=new Pion(false);
         pion1.retourner();
