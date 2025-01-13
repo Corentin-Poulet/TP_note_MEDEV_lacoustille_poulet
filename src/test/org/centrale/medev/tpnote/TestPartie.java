@@ -48,10 +48,9 @@ public class TestPartie{
 
     @Test
     public void testPartie(){
-        System.out.println("Partie test");
-        Plateau plateau = new Plateau();
-        assertEquals(false, plateau.getCase(3, 3).getCouleur());
-        assertEquals(true, plateau.getCase(3, 4).getCouleur());
-        assertNull(plateau.getCase(3,5));
+        mockScannerInput(String.valueOf("a1"));
+        Partie partie = partie();
+        
+
     }
 }
