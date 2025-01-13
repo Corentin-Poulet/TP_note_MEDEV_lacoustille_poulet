@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.centrale.medev.tpnote.Partie;
+import java.io.ByteArrayInputStream;
 
 /**
  *
@@ -48,7 +49,7 @@ public class TestPartie{
 
     @Test
     public void testPartie(){
-        afficherMessage();
+        Partie.afficherMessage(true, true);
         mockScannerInput(String.valueOf("d3"));
         Partie partie = new Partie();
     }

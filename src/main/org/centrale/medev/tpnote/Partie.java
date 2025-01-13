@@ -50,7 +50,7 @@ public class Partie{
 			}}
 	}
 
-	private void afficherMessage(boolean joueur, boolean erreur){
+	public static void afficherMessage(boolean joueur, boolean erreur){
 		Logger logger = Logger.getLogger("Partie en Cours");
 		if (erreur){
 			logger.info("----- Impossible de jouer à cet endroit -----");
@@ -74,7 +74,7 @@ public class Partie{
 			partieEnCours = false;
 			boolean vainqueur = (compterPions()>0);
 			String couleur;
-			if (joueur) {
+			if (vainqueur) {
 				couleur = "blanc";
 			}else{couleur = "noir";}
 			logger.info("le joueur "+couleur+" a gagné la partie!");
@@ -85,8 +85,8 @@ public class Partie{
 	private int compterPions(){
 		int noirs = 0;
 		int blancs = 0;
-		for (i=0;i<8 ;i++ ) {
-			for (j=0;j<8 ;j++ ) {
+		for (int i=0;i<8 ;i++ ) {
+			for (int j=0;j<8 ;j++ ) {
 				if (plateau.getCase(i, j)!=null){
 					if (plateau.getCase(i, j).getCouleur()){
 						blancs+=1;
