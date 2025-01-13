@@ -56,22 +56,24 @@ public class Plateau {
      */
     public void afficher(){
         System.out.println("\ta\tb\tc\td\te\tf\tg\th");
+        String line;
         for (int i=0;i<8;i++){
-            System.out.println(i+1+"\t");
+            line = i+1+"\t";
             for (int j=0;j<8;j++){
                 Pion pion=this.getCase(i, j);
                 if (pion==null){
-                    System.out.println("*\t");
+                    line+="*\t";
                 }
                 else{
                     if(pion.getCouleur()){
-                        System.out.println("B\t");
+                        line+=("B\t");
                     }
                     else{
-                        System.out.println("N\t");
+                        line+=("N\t");
                     }
                 }
             }
+            System.out.println(line);
         }
     }
 

@@ -19,6 +19,7 @@ public class Partie{
 		while (partieEnCours){
 			noTour +=0.5;
 			joueurActif = !joueurActif;
+			plateau.afficher();
 			actionEffectue = actionJoueur(joueurActif);
 			determinerVictoire();
 		}
