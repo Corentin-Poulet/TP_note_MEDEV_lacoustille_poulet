@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.centrale.medev.tpnote.Plateau;
+import org.centrale.medev.tpnote.Partie;
 
 /**
  *
@@ -50,6 +50,6 @@ public class TestPartie{
     public void testPartie(){
         afficherMessage();
         mockScannerInput(String.valueOf("d3"));
-        Partie partie = Partie();
+        Partie partie = new Partie();
     }
 }
