@@ -52,15 +52,28 @@ public class Plateau {
     }
 
     /**
-     * Permet d'afficher le plateau
+     * Permet d'afficher le plateau (*=Pas de pion, B=Blanc, N=Noir)
      */
-
     public void afficher(){
         System.out.println("\ta\tb\tc\td\te\tf\tg\th");
-        for (int i=1;i<=8;i++){
-            System.out.println(i);
+        for (int i=0;i<8;i++){
+            System.out.println(i+1+"\t");
+            for (int j=0;j<8;j++){
+                Pion pion=this.getCase(i, j);
+                if (pion==null){
+                    System.out.println("*\t");
+                }
+                else{
+                    if(pion.getCouleur()){
+                        System.out.println("B\t");
+                    }
+                    else{
+                        System.out.println("N\t");
+                    }
+                }
+            }
         }
-
     }
+
 
 }
