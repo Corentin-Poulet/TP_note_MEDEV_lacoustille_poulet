@@ -4,7 +4,7 @@ package org.centrale.medev.tpnote;
  * Plateau de jeu de 8 cases par 8 cases
  */
 public class Plateau {
-    private Cases = new Pion[8][8];
+    private Pion[][] Cases = new Pion[8][8];
 
     /**
      * Constructeur
