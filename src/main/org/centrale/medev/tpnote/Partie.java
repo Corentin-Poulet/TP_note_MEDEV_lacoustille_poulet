@@ -6,7 +6,8 @@ public class Partie{
 	private Integer noTour;
 	private Plateau plateau;
 	private Boolean partieEnCours;
-
+	private Boolean actionEffectue;
+	private Boolean deuxiemeAction;
 	Partie(){
 		plateau = new Plateau();
 		noTour = 0;
@@ -17,31 +18,45 @@ public class Partie{
 		while (partieEnCours){
 			noTour +=1;
 			joueurActif = false;
-			boolean actionEffectue = actionJoueur(joueurActif);
+			actionEffectue = actionJoueur(joueurActif);
+			determinerFin();
+			joueurActif  =true;
+			deuxiemeAction = actionJoueur(joueurActif);
+			determinerFin();
 		}
 	}
 
 	private boolean actionJoueur(boolean joueur){
 		Logger logger = Logger.getLogger("actionJoueur");
 		Scanner scan = new Scanner(System.in);
-		afficherMessage(joueur);
+		afficherMessage(joueur, false);
 		String action = scan.nextLine();
 		boolean doitPasser = !Plateau.peutJouer();
-		if (action.equals("p") && doitPasser){
+		boolean caseValide = false;
+		if (doitPasser){
+			while (!action.equals("p")){
+				afficherMessage(joueur, true);
+				action = scan.nextLine();
+			}
 			return false;
-		}else if(action.equals("p")){
-			logger.info("Impossible de passer");
 		}else{
-		int column = action.charAt(1)-'1';
-		int line = action.charAt(0) - 'a';
-		boolean caseValide = plateau.verifierDispo(line, column, joueur);
-		while (!caseValide()){
-			
-		}}
+			while (!caseValide()){
+				if (action.equals("p")){logger.info(" ----- Impossible de passer -----");}
+				else{
+					int column = action.charAt(1)-'1';
+					int line = action.charAt(0) - 'a';
+					caseValide = plateau.verifierDispo(line, column, joueur);
+					if (caseValide){return true;}
+					action = scan.nextLine();
+				}
+			}}
 	}
 
-	private void afficherMessage(boolean joueur){
+	private void afficherMessage(boolean joueur, boolean erreur){
 		Logger logger = Logger.getLogger("Partie en Cours");
+		if (erreur){
+			logger.info("----- Impossible de jouer à cet endroit -----");
+		}
 		String couleur;
 		if (joueur) {
 			couleur = "blanc";
@@ -52,5 +67,11 @@ public class Partie{
 
 	public Boolean getJoueurActif(){
 		return joueurActif;
+	}
+
+	private determinerFin(){
+		if (!(actionEffectue||deuxiemeAction)){
+			
+		}
 	}
 }
