@@ -148,6 +148,12 @@
 	<echo message="${jacoco.report}"/>
     </target>
 	<target name="rebuild" depends="generatingJar,generatingJavadoc,testReport" />
+    <target name="clean">
+        <echo>=== CLEAN ===</echo>
+        <delete failonerror="false">
+            <fileset dir="${result.dir}" includes="**/*"/>
+        </delete>
+    </target>
 </project>
 
     
