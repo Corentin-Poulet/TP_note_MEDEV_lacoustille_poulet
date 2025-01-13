@@ -77,7 +77,7 @@ public class Partie{
 			if (joueur) {
 				couleur = "blanc";
 			}else{couleur = "noir";}
-			logger.info("le joueur "+couleur+" a gagné la partie!")
+			logger.info("le joueur "+couleur+" a gagné la partie!");
 
 		}
 	}
