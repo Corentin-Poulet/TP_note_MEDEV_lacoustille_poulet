@@ -11,13 +11,56 @@ public class Plateau {
      * Constructeur
      */
     public Plateau() {
-        cases[3][3] = new Pion(false);
-        cases[4][4] = new Pion(false);
-        cases[3][4] = new Pion(true);
-        cases[4][3] = new Pion(true);
+        this.cases[3][3] = new Pion(false);
+        this.cases[4][4] = new Pion(false);
+        this.cases[3][4] = new Pion(true);
+        this.cases[4][3] = new Pion(true);
     }
 
+    /**
+     * Permet d'obtenir un pion (ou null) sur une case
+     * @param x la coordonnée x
+     * @param y La coordonnée y
+     * @return Le pion de la case 
+     */
+
     public Pion getCase(int x, int y){
-        return cases[x][y];
+        return this.cases[x][y];
     }
+
+    /**
+     * Setter permettant de modifier le pion d'une case
+     * @param x La coordonnée x
+     * @param y La coordonnée y
+     * @param pion Le pion à mettre sur la case
+     */
+
+    public void setCase(int x,int y, Pion pion){
+        this.cases[x][y]=pion;
+    }
+
+    /**
+     * Permet d'ajouter un pion d'une couleur au plateau
+     * @param x La coordonnée x
+     * @param y La coordonnée y
+     * @param couleur La couleur du pion
+     */
+
+    public void ajout(int x, int y, boolean couleur){
+        Pion pion=new Pion(couleur);
+        this.setCase(x, y, pion);
+    }
+
+    /**
+     * Permet d'afficher le plateau
+     */
+
+    public void afficher(){
+        System.out.println("\ta\tb\tc\td\te\tf\tg\th");
+        for (int i=1;i<=8;i++){
+            System.out.println(i);
+        }
+
+    }
+
 }
