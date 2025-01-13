@@ -5,7 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.centrale.medev.tpnote.Plateau;
+//import org.centrale.medev.tpnote.Plateau;
+import org.centrale.medev.tpnote.Pion;
 
 /**
  *
