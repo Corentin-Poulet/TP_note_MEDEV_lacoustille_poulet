@@ -15,4 +15,8 @@ public class Plateau {
         Cases[3][4] = new Pion(true);
         Cases[4][3] = new Pion(true);
     }
+
+    public getCase(int x, int y){
+        return Cases[x][y];
+    }
 }
