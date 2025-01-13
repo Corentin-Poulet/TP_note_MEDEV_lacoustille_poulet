@@ -59,7 +59,7 @@
         <!--Génération du fichier .jar et du manifest-->
         <jar basedir="${classes.location}" destfile="build/executable/TP_note_medev_lacoustille_poulet.jar">
             <manifest>
-                <attribute name="Main-Class" value="org.centrale.medev.tpnote.Tests"/>
+                <attribute name="Main-Class" value="org.centrale.medev.tpnote.Jeu"/>
             </manifest>
         </jar>
         <echo message="Done!"/>
