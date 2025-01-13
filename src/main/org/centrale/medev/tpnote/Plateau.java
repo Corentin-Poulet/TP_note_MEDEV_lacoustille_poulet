@@ -1,5 +1,7 @@
 package org.centrale.medev.tpnote;
 
+import java.util.Optional;
+
 /**
  * Plateau de jeu de 8 cases par 8 cases
  */
@@ -16,7 +18,7 @@ public class Plateau {
         Cases[4][3] = new Pion(true);
     }
 
-    public getCase(int x, int y){
+    public Optional[Pion] getCase(int x, int y){
         return Cases[x][y];
     }
 }
