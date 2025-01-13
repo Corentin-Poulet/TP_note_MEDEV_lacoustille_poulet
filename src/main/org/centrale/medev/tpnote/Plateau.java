@@ -100,4 +100,43 @@ public class Plateau {
         return result;
     }
 
+    /**
+     * Permet de vérfier si une position est jouable et joue si elle l'est
+     * @param x Coordonnée x
+     * @param y Coordonnée y
+     * @param couleur Couleur du pion
+     * @return si la case est jouable ou pas
+     */
+    public boolean verifierDispo(int x, int y, boolean couleur){
+        ArrayList<Pion> prenable=retournes(x, y, couleur);
+        if (prenable.size()==0){
+            return false;
+        }
+        else{
+            ajout(x, y, couleur);
+            for (Pion pion:prenable){
+                pion.retourner();
+            }
+            return true;
+        }
+    }
+
+    /**
+     * Méthode permettant de déterminer si l'on peut jouer ou pas
+     * @param couleur La couleur du joueur
+     * @return Si l'on peut jouer ou pas
+     */
+    public boolean peutJouer(boolean couleur){
+        for (int i=0;i<8;i++){
+            for(int j=0;j<0;j++){
+                if(retournes(i, j, couleur).size()!=0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
 }
