@@ -3,14 +3,14 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 public class Partie{
 	private Boolean joueurActif;
-	private Float noTour;
+	private Double noTour;
 	private Plateau plateau;
 	private Boolean partieEnCours;
 	private Boolean actionEffectue;
 	private Boolean deuxiemeAction;
 	Partie(){
 		plateau = new Plateau();
-		noTour = 0;
+		noTour = 0.0;
 		partieEnCours = true;
 		jouer();
 		joueurActif = false;
@@ -67,10 +67,36 @@ public class Partie{
 		return joueurActif;
 	}
 
-	private void determinerFin(){
+	private void determinerVictoire(){
+		Logger logger = Logger.getLogger("endGame");
 		if (!(actionEffectue||deuxiemeAction)){
-			System.out.prinln("C'est la fin");
+			logger.info("C'est la fin");
 			partieEnCours = false;
+			boolean vainqueur = (compterPions()>0);
+			String couleur;
+			if (joueur) {
+				couleur = "blanc";
+			}else{couleur = "noir";}
+			logger.info("le joueur "+couleur+" a gagné la partie!")
+
 		}
+	}
+
+	private int compterPions(){
+		int noirs = 0;
+		int blancs = 0;
+		for (i=0;i<8 ;i++ ) {
+			for (j=0;j<8 ;j++ ) {
+				if (plateau.getCase(i, j)!=null){
+					if (plateau.getCase(i, j).getCouleur()){
+						blancs+=1;
+					}else{
+						noirs+=1;
+					}
+				}
+			}
+			
+		}
+		return blancs-noirs;
 	}
 }
