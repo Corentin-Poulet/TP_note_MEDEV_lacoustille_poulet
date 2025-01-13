@@ -11,10 +11,10 @@ public class Plateau {
      * Constructeur
      */
     public Plateau() {
-        cases[3][3] = new Pion(false);
-        cases[4][4] = new Pion(false);
-        cases[3][4] = new Pion(true);
-        cases[4][3] = new Pion(true);
+        cases[3][3] = new Pion(true);
+        cases[4][4] = new Pion(true);
+        cases[3][4] = new Pion(false);
+        cases[4][3] = new Pion(false);
     }
 
     public Pion getCase(int x, int y){
