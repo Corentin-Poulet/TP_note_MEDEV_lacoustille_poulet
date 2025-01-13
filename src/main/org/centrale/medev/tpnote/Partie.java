@@ -10,8 +10,8 @@ public class Partie{
 	Partie(){
 		plateau = new Plateau();
 		noTour = 0;
-		jouer();
 		partieEnCours = true;
+		jouer();
 	}
 	private void jouer(){
 		while (partieEnCours){
@@ -35,7 +35,6 @@ public class Partie{
 			couleur = "blanc";
 		}else{couleur = "noir";}
 		logger.info("Vous jouez avec les"+couleur+"s");
-		logger.info("Choisissez une case : ");
 		logger.info("Choisissez une case : ");
 	}
 	public Boolean getJoueurActif(){
