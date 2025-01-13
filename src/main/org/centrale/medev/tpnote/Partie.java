@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 public class Partie{
 	private Boolean joueurActif;
-	private Integer noTour;
+	private Float noTour;
 	private Plateau plateau;
 	private Boolean partieEnCours;
 	private Boolean actionEffectue;
@@ -13,16 +13,14 @@ public class Partie{
 		noTour = 0;
 		partieEnCours = true;
 		jouer();
+		joueurActif = false;
 	}
 	private void jouer(){
 		while (partieEnCours){
-			noTour +=1;
-			joueurActif = false;
+			noTour +=0.5;
+			joueurActif = !joueurActif;
 			actionEffectue = actionJoueur(joueurActif);
-			determinerFin();
-			joueurActif  =true;
-			deuxiemeAction = actionJoueur(joueurActif);
-			determinerFin();
+			determinerVictoire();
 		}
 	}
 
@@ -69,9 +67,10 @@ public class Partie{
 		return joueurActif;
 	}
 
-	private determinerFin(){
+	private void determinerFin(){
 		if (!(actionEffectue||deuxiemeAction)){
-			
+			System.out.prinln("C'est la fin");
+			partieEnCours = false;
 		}
 	}
 }
