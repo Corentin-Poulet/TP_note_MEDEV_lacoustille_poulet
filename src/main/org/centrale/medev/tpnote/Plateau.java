@@ -19,7 +19,7 @@ public class Plateau {
         cases[4][3] = new Pion(true);
     }
 
-    public Optional<Pion> getCase(int x, int y){
+    public Pion getCase(int x, int y){
         return cases[x][y];
     }
 }
