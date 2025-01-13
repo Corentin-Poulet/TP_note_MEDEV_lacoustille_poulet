@@ -1,4 +1,3 @@
-
 package org.centrale.medev.tpnote;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -6,50 +5,45 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.centrale.medev.tpnote.Tests;
+import org.centrale.medev.tpnote.Plateau;
 
 /**
  *
  * @author lacoustille_poulet
  */
 
-public class TestTests{
-    public TestTests() {
+public class TestPlateau{
+    public TestPlateau() {
         // empty constructor
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
         //nothing to do yet
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
         //nothing to do yet
 
     }
-    
+
     @BeforeEach
     public void setUp() {
         //nothing to do yet
 
     }
-    
+
     @AfterEach
     public void tearDown() {
         //nothing to do yet
     }
 
-    @Test 
-    public void testMain(){
-        System.out.println("main");
-        Tests.main(new String[2]);
-    }
-
     @Test
-    public void testAdder(){
-        assertEquals(Tests.theAdder(5,4), 9);
-        assertEquals(Tests.theAdder(0, -2), 2);
-        assertEquals(Tests.theAdder(-2,-2), 0);
+    public void testPlateauPlateau(){
+        System.out.println("Plateau test");
+        Plateau plateau = new Plateau();
+        assertEquals(plateau.getCase(3, 3).getCouleur(), false);
+        assertEquals(plateau.getCase(3, 4).getCouleur(), true);
     }
 }
