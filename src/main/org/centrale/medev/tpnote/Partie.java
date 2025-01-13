@@ -17,19 +17,31 @@ public class Partie{
 		while (partieEnCours){
 			noTour +=1;
 			joueurActif = false;
-			actionJoueur(joueurActif);
+			boolean actionEffectue = actionJoueur(joueurActif);
 		}
 	}
 
-	private void actionJoueur(boolean joueur){
+	private boolean actionJoueur(boolean joueur){
+		Logger logger = Logger.getLogger("actionJoueur");
 		Scanner scan = new Scanner(System.in);
+		afficherMessage(joueur);
 		String action = scan.nextLine();
-		char line = action.charAt(1);
-		int column = action.charAt(0) - '0';
+		boolean doitPasser = !Plateau.peutJouer();
+		if (action.equals("p") && doitPasser){
+			return false;
+		}else if(action.equals("p")){
+			logger.info("Impossible de passer");
+		}else{
+		int column = action.charAt(1)-'1';
+		int line = action.charAt(0) - 'a';
+		boolean caseValide = plateau.verifierDispo(line, column, joueur);
+		while (!caseValide()){
+			
+		}}
 	}
 
 	private void afficherMessage(boolean joueur){
-		Logger logger = Logger.getGlobal();
+		Logger logger = Logger.getLogger("Partie en Cours");
 		String couleur;
 		if (joueur) {
 			couleur = "blanc";
@@ -37,6 +49,7 @@ public class Partie{
 		logger.info("Vous jouez avec les"+couleur+"s");
 		logger.info("Choisissez une case : ");
 	}
+
 	public Boolean getJoueurActif(){
 		return joueurActif;
 	}
