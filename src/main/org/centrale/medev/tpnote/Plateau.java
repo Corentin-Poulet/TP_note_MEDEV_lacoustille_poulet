@@ -1,7 +1,5 @@
 package org.centrale.medev.tpnote;
 
-import java.util.Optional;
-import org.centrale.medev.tpnote.Pion;
 
 /**
  * Plateau de jeu de 8 cases par 8 cases
