@@ -48,9 +48,8 @@ public class TestPartie{
 
     @Test
     public void testPartie(){
-        mockScannerInput(String.valueOf("a1"));
-        Partie partie = partie();
-        
-
+        afficherMessage();
+        mockScannerInput(String.valueOf("d3"));
+        Partie partie = Partie();
     }
 }
