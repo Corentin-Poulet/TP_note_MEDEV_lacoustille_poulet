@@ -1,6 +1,5 @@
 package org.centrale.medev.tpnote;
 
-import java.util.Optional;
 import org.centrale.medev.tpnote.Pion;
 
 /**
