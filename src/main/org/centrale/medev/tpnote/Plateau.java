@@ -91,7 +91,7 @@ public class Plateau {
                 int k=1;
                 while ((x+i*k>=0 && y+j*k>=0 && x+i*k<8 && y+j*k<8) && ((this.getCase(x+k*i, y+k*j)!=null && this.getCase(x+k*i, y+k*j).getCouleur()!=couleur))){
                     k++;
-                    if ((this.getCase(x+k*i, y+k*j)!=null && this.getCase(x+k*i,y+k*j).getCouleur()==couleur)){
+                    if ((x+i*k>=0 && y+j*k>=0 && x+i*k<8 && y+j*k<8) && (this.getCase(x+k*i, y+k*j)!=null && this.getCase(x+k*i,y+k*j).getCouleur()==couleur)){
                         for (int a=1;a<k;a++){
                             result.add(this.getCase(x+i*a,y+a*j));
                         }
