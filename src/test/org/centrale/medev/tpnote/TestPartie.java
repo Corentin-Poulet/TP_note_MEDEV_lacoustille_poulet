@@ -50,7 +50,7 @@ public class TestPartie{
     @Test
     public void testPartie(){
         Partie.afficherMessage(true, true);
-        mockScannerInput(String.valueOf("d3"));
+        mockScannerInput(String.valueOf("c3\nc4"));
         Partie partie = new Partie();
     }
 }
